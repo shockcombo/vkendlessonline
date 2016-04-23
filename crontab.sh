@@ -1,10 +1,9 @@
 #!/bin/bash
-destdir=/var/scriptkiddies/variables.txt
-# READ FILE MIST BE FORMATTED LIKE THIS
+# VARIABLES.TXT FILE MIST BE FORMATTED LIKE THIS
 # DATE=$DATE
 # STARTTIME=$STARTTIME
 # ENDTIME=$ENDTIME
-
+destdir=/var/scriptkiddies/variables.txt
 TIME=`date '+%s'`
 CURRENTDATE=`date '+%d'`
 
@@ -18,8 +17,7 @@ else
   exit 1
 fi
 
-
-if [ $CURRENTDATE > $DATE ] && [ $TIME < $END ]
+if [ $CURRENTDATE > $DATE ] && [ $TIME \< $END ]
 then
 # get random time hour and minute to start logging in
 # STARTTIME, ENDTIME will be have format like 10:15 20:44
@@ -40,7 +38,7 @@ then
     echo New day has been started!
     echo "Day: $DATE, current: $CURRENTDATE"
     echo "ST: $STARTTIME, ET: $ENDTIME."
-
+    exit 1
 else
         echo "Day has been already started. Day: $DATE, current: $CURRENTDATE"
   		echo "ST was: $STARTTIME, ET was: $ENDTIME."
@@ -49,3 +47,4 @@ else
 fi
 
 php -q /var/scriptkiddies/login.php > /dev/null
+echo Script has been started.
