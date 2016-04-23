@@ -1,25 +1,25 @@
 #!/bin/bash
 destdir=/var/scriptkiddies/variables.txt
-	declare -i DATE
-	declare -x STARTTIME
-	declare -x ENDTIME
-
 # READ FILE MIST BE FORMATTED LIKE THIS
 # DATE=$DATE
 # STARTTIME=$STARTTIME
 # ENDTIME=$ENDTIME
 
+TIME=`date '+%s'`
+CURRENTDATE=`date '+%d'`
+
 # Check if our file is exists
 if [ -e $destdir ]; then
   echo "File $1 already exists. Going through, everything is fine."
+  #READ OUR VARIABLES FROM FILE
   source /var/scriptkiddies/variables.txt
 else
   echo "File $destdir is missing! Stop."
   exit 1
 fi
 
-CURRENTDATE=`date '+%d'`
-if [[ $CURRENTDATE > $DATE ]]
+
+if [ $CURRENTDATE > $DATE ] && [ $TIME < $END ]
 then
 # get random time hour and minute to start logging in
 # STARTTIME, ENDTIME will be have format like 10:15 20:44
@@ -35,22 +35,17 @@ then
 	END=`date --date="$ENDTIME" +%s`
 	DATE="$CURRENTDATE"
 	# write our variables to file
-	printf "echo DATE=$DATE\n echo START=$START\n echo END=$END" > "$destdir"
+	printf "DATE=$DATE\nSTART=$START\nEND=$END\nSTARTTIME=$STARTTIME\nENDTIME=$ENDTIME" > "$destdir"
 
     echo New day has been started!
+    echo "Day: $DATE, current: $CURRENTDATE"
+    echo "ST: $STARTTIME, ET: $ENDTIME."
+
 else
-message="Day has been already started. Day: $DATE, current day: $CURRENTDATE"
-    echo $message
+        echo "Day has been already started. Day: $DATE, current: $CURRENTDATE"
+  		echo "ST was: $STARTTIME, ET was: $ENDTIME."
+    	echo "Come back tomorrow."
+        exit 1
 fi
 
-TIME=`date '+%s'`
-if [[ "$TIME" -ge "$START" && "$TIME" -le "$END" ]] ; then
-	php -q /var/scriptkiddies/login.php > /dev/null
-  	echo "Start time: $STARTTIME, end time $ENDTIME."
-fi
-
-if [[ "$TIME" -ge "$END" && "$CURRENTDATE" = "$DATE" ]] ; then
-
-    echo "ST was: $STARTTIME, ET was: $ENDTIME."
-    echo "Come back tomorrow"
-fi
+php -q /var/scriptkiddies/login.php > /dev/null
