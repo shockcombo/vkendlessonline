@@ -21,5 +21,7 @@ How it works:
 5. Write our variables into variables.txt file;
 6. If everything is fine and if wasn't any errors -- it should run. All errors you could see by bashing himself in console.
 
+P.S. I made only shell part, for PHP thanks to Ruslan Sadykhov https://vk.com/fsdsdfsfdsfsdfsdfsdfsdfsdfsgsdfs
+
 Wish it could be useful for you.
 Good luck and have fun.
