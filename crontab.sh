@@ -17,7 +17,7 @@ else
   exit 1
 fi
 
-if [ $CURRENTDATE > $DATE ] && [ $TIME \< $END ]
+if [ $CURRENTDATE -gt $DATE ]
 then
 # get random time hour and minute to start logging in
 # STARTTIME, ENDTIME will be have format like 10:15 20:44
@@ -41,9 +41,7 @@ then
     exit 1
 else
         echo "Day has been already started. Day: $DATE, current: $CURRENTDATE"
-  		echo "ST was: $STARTTIME, ET was: $ENDTIME."
-    	echo "Come back tomorrow."
-        exit 1
+  		echo "ST is: $STARTTIME, ET is: $ENDTIME."
 fi
 
 php -q /var/scriptkiddies/login.php > /dev/null
