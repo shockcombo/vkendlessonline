@@ -44,5 +44,11 @@ else
   		echo "ST is: $STARTTIME, ET is: $ENDTIME."
 fi
 
+if [ $TIME -gt $END ]
+then
+	echo Today is over.
+	exit 1
+	fi
+
 php -q /var/scriptkiddies/login.php > /dev/null
 echo Script has been started.
