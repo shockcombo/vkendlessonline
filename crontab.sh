@@ -50,5 +50,11 @@ then
 	exit 1
 	fi
 
+if [ $TIME -lt $START ]
+then
+	echo Today isn\'t started yet
+	exit 1
+	fi
+
 php -q /var/scriptkiddies/login.php > /dev/null
 echo Script has been started.
