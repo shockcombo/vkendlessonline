@@ -17,6 +17,10 @@ else
   exit 1
 fi
 
+if [ $DATE -ge 28 ] &&  [ $CURRENTDATE -ge 1 ]; then
+    ((DATE=01))
+fi
+
 if [ $CURRENTDATE -gt $DATE ]
 then
 # get random time hour and minute to start logging in
