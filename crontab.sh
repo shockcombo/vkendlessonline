@@ -6,6 +6,7 @@
 destdir=/var/scriptkiddies/variables.txt
 TIME=`date '+%s'`
 CURRENTDATE=`date '+%d'`
+YESTERDAY=`date +%d -d "1 day ago"`
 
 # Check if our file is exists
 if [ -e $destdir ]; then
@@ -17,7 +18,7 @@ else
   exit 1
 fi
 
-if [ $DATE -ge 28 ] &&  [ $CURRENTDATE -ge 1 ]; then
+if [ $DATE -lt $YESTERDAY ] &&  [ $CURRENTDATE -e 1 ]; then
     ((DATE=01))
 fi
 
